@@ -84,8 +84,8 @@ if new_partner_product_name:
     if len(top_3_values) > 1 and (top_3_values[0] - top_3_values[1]) > 90:
         top_3_predicted_probs = {list(top_3_predicted_probs.keys())[0]: top_3_values[0]}
     
-    # Filter out the third product if its probability is less than 2%
-    top_3_predicted_probs = {k: v for k, v in top_3_predicted_probs.items() if v >= 2}
+    # Filter out the third product if its probability is less than 5%
+    top_3_predicted_probs = {k: v for k, v in top_3_predicted_probs.items() if v >= 5}
     
     top_3_df = pd.DataFrame(list(top_3_predicted_probs.items()), columns=['BI Product Name', 'Probability Percent (%)'])
     top_3_df.index = top_3_df.index + 1
