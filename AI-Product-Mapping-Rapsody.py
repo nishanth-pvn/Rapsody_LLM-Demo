@@ -104,7 +104,7 @@ if new_partner_product_name:
         if top_3_values[0] >= 80:
             st.code(predicted_output, language='Python')
         else:
-            st.code("----", language='Python')
+            st.code(predicted_output, language='Python')
     
     st.text(' ')
     
