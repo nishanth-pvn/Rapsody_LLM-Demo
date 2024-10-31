@@ -94,14 +94,17 @@ if new_partner_product_name:
     col1, col2 = st.columns([0.60, 0.40])
     
     with col1:
-        st.markdown("<h8 style='text-align: center;'><b>Top Matching BI Product Names</b></h8>", unsafe_allow_html=True)
+        st.markdown("<h8 style='text-align: center;'><b>Top Matching BI Product Name(s)</b></h8>", unsafe_allow_html=True)
         st.write(top_3_df)
     
     with col2:
         st.markdown("<h8 style='text-align: center;'><b>Predicted BI Product Name</b></h8>", unsafe_allow_html=True)
         st.text(' ')
         st.text(' ')
-        st.code(predicted_output, language='Python')
+        if top_3_values[0] >= 80:
+            st.code(predicted_output, language='Python')
+        else:
+            st.code("----", language='Python')
     
     st.text(' ')
     
