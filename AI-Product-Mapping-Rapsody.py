@@ -81,7 +81,7 @@ if new_partner_product_name:
     
     # Check the difference between the first and second record
     top_3_values = list(top_3_predicted_probs.values())
-    if len(top_3_values) > 1 and (top_3_values[0] - top_3_values[1]) > 50:
+    if len(top_3_values) > 1 and (top_3_values[0] - top_3_values[1]) > 20:
         top_3_predicted_probs = {list(top_3_predicted_probs.keys())[0]: top_3_values[0]}
     
     top_3_df = pd.DataFrame(list(top_3_predicted_probs.items()), columns=['BI Product Name', 'Probability Percent (%)'])
