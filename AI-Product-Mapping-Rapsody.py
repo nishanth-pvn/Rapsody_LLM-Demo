@@ -84,6 +84,9 @@ if new_partner_product_name:
     if len(top_3_values) > 1 and (top_3_values[0] - top_3_values[1]) > 90:
         top_3_predicted_probs = {list(top_3_predicted_probs.keys())[0]: top_3_values[0]}
     
+    # Filter out the third product if its probability is less than 10%
+    top_3_predicted_probs = {k: v for k, v in top_3_predicted_probs.items() if v >= 10}
+    
     top_3_df = pd.DataFrame(list(top_3_predicted_probs.items()), columns=['BI Product Name', 'Probability Percent (%)'])
     top_3_df.index = top_3_df.index + 1
     top_3_df['Probability Percent (%)'] = round(top_3_df['Probability Percent (%)'], 2)
@@ -91,7 +94,7 @@ if new_partner_product_name:
     col1, col2 = st.columns([0.60, 0.40])
     
     with col1:
-        st.markdown("<h8 style='text-align: center;'><b>Matching BI Product Names (Top 3)</b></h8>", unsafe_allow_html=True)
+        st.markdown("<h8 style='text-align: center;'><b>Top Matching BI Product Names</b></h8>", unsafe_allow_html=True)
         st.write(top_3_df)
     
     with col2:
