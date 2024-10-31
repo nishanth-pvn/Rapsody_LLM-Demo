@@ -81,7 +81,7 @@ if new_partner_product_name:
     
     # Check the difference between the first and second record
     top_3_values = list(top_3_predicted_probs.values())
-    if len(top_3_values) > 1 and (top_3_values[0] - top_3_values[1]) > 90:
+    if len(top_3_values) > 1 and (top_3_values[0] - top_3_values[1]) > 99:
         top_3_predicted_probs = {list(top_3_predicted_probs.keys())[0]: top_3_values[0]}
     
     # Filter out the third product if its probability is less than 5%
