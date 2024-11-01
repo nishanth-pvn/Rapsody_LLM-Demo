@@ -10,7 +10,7 @@ import joblib
 
 # Title of the Streamlit app
 st.set_page_config(page_title="", layout="wide")
-st.markdown("<h5 style='text-align: center;'><b>Rapsody - LLM (Demo)</b></h5>", unsafe_allow_html=True)
+st.markdown("<h5 style='text-align: center;'><b>Rapsody - LLM (Product Mapping Demo)</b></h5>", unsafe_allow_html=True)
 st.divider()
 
 with st.sidebar:
@@ -20,7 +20,7 @@ with st.sidebar:
     st.write(' ')
     st.write(' ')
     st.markdown("<h3 style='text-align: left;'><b>Distributor Product Name</b></h3>", unsafe_allow_html=True)
-    new_partner_product_name = st.sidebar.text_input('Type in few letters, press enter')
+    new_partner_product_name = st.sidebar.text_input('Type in few words, then press enter')
 
 # Load data
 def load_data(file_path):
@@ -81,11 +81,11 @@ if new_partner_product_name:
     
     # Check the difference between the first and second record
     top_3_values = list(top_3_predicted_probs.values())
-    if len(top_3_values) > 1 and (top_3_values[0] - top_3_values[1]) > 90:
-        top_3_predicted_probs = {list(top_3_predicted_probs.keys())[0]: top_3_values[0]}
+ #   if len(top_3_values) > 1 and (top_3_values[0] - top_3_values[1]) > 50:
+ #       top_3_predicted_probs = {list(top_3_predicted_probs.keys())[0]: top_3_values[0]}
     
-    # Filter out the third product if its probability is less than 0.5%
-    top_3_predicted_probs = {k: v for k, v in top_3_predicted_probs.items() if v >= 0.5}
+ # Filter out the third product if its probability is less than 5%
+    top_3_predicted_probs = {k: v for k, v in top_3_predicted_probs.items() if v >= 5}
     
     top_3_df = pd.DataFrame(list(top_3_predicted_probs.items()), columns=['BI Product Name', 'Probability Percent (%)'])
     top_3_df.index = top_3_df.index + 1
@@ -98,13 +98,10 @@ if new_partner_product_name:
         st.write(top_3_df)
     
     with col2:
-        st.markdown("<h8 style='text-align: center;'><b>Predicted BI Product Name</b></h8>", unsafe_allow_html=True)
-        st.text(' ')
-        st.text(' ')
-        if top_3_values[0] >= 80:
-            st.code(predicted_output, language='Python')
-        else:
-            st.code(predicted_output, language='Python')
+        if top_3_values[0] >= 90:
+            st.markdown("<h8 style='text-align: center;'><b>Predicted BI Product Name</b></h8>", unsafe_allow_html=True)
+            st.success(predicted_output, icon="✅")
+            #st.code(predicted_output, language='Python')
     
     st.text(' ')
     
