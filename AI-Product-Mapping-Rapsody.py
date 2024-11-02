@@ -10,7 +10,7 @@ import joblib
 
 # Title of the Streamlit app
 st.set_page_config(page_title="", layout="wide")
-st.markdown("<h5 style='text-align: center;'><b>Rapsody - LLM (Product Mapping Demo)</b></h5>", unsafe_allow_html=True)
+st.markdown("<h5 style='text-align: center;'><b>Rapsody LLM (AI Product Mapping - Demo)</b></h5>", unsafe_allow_html=True)
 st.divider()
 
 with st.sidebar:
